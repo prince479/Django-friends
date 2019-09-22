@@ -1,0 +1,12 @@
+{%extends 'master.html'%}
+{%load static %}
+{% block body %}
+
+<center>
+    <h1>Welcome to Django Friends Model</h1>
+    <h4>Login to Continue......</h4>
+<a href="{%url 'login'%}" class="btn btn-primary">Login</a>
+<a href="{%url 'signup'%}" class="btn btn-default">Signup</a> 
+
+    </center>
+{%endblock%}

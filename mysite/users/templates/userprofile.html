@@ -1,0 +1,33 @@
+{%extends 'master.html'%}
+{%load static %}
+{% block body %}
+        {%if u%}
+<center>
+<br>
+    <p><img src="{{p.profile_pic.url}}" width="100" height="100"/></p>
+	<h1><i>{{u.username}}</h1><hr></i>
+        <h1>Friends</h1>
+	<h5>Mutal Friends :{{count}} </h5>
+
+		{% for friend in friends_list %}
+			<a href="{%url 'view' friend.id%}">{{ friend.user.username }}</a>
+			<br>
+		{% endfor %}
+		<hr>
+		<h2>Sent Friend requests</h2>
+		<ul>
+		{% for s_request in sent_friend_requests %}
+			<li>{{ s_request.to_user.username }}</li>
+		{% endfor %}
+		</ul>
+		<hr>
+		<h2>Received Friend requests</h2>
+
+		{% for r_request in rec_friend_requests %}
+			<p><a href="{% url 'view' r_request.from_user.id %}">{{ r_request.from_user.username }}</a></p>
+			<small><a class='btn btn-primary' href="{%url 'accept' r_request.from_user.id%}">Accept</a></small>
+			<small><a class='btn btn-warning' href="{% url 'ignore' r_request.from_user.id %}">Ignore</a></small>
+		{% endfor %}
+{%endif%}
+</center>
+{%endblock%}

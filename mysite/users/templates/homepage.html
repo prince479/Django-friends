@@ -1,0 +1,47 @@
+{%extends 'master.html'%}
+{%load static %}
+{% block body %}
+<style>
+    img{
+    border-radius:50px;
+
+</style>
+<center><br>
+    <p><img src="{{image.profile_pic.url}}" width="100" height="100"/></p>
+<h1>Welcome:{{user.username}}
+<a href="{% url 'logout'%}" class="btn btn-danger">Logout</a></h1>
+<p><a href="{% url 'myprofile'%}" class="btn btn-success">View Your Profile</a>
+<a href="{% url 'edit'%}" class="btn btn-success">Update Profile</a></p></center>
+
+
+
+<hr>
+<section class="container">
+    <aside class="row" style="padding:10px; margin:10px">
+        <div class="box-search">
+            <br>
+            <form method='GET' class="search_form">
+                <div class="col-md-10"><input type="text" name="search" placeholder="Search users"
+                                              class="form-control"/>
+                </div>
+                <div class="col-md-2">
+                    <input type="submit" value="Search" class="btn btn-info"/>
+                </div>
+
+            </form>
+            <br><br>
+        </div>
+        <div class="jumbotron bg-info">
+            <h4><b>Suggested Friends:</b></h4>
+            {%for p in user_list%}
+            <img src="{{p.profile_pic.url}}" width="100" height="100"/>&nbsp;&nbsp;<a href="{%url 'view' p.id%}" class="btn btn-primary">{{p.user.username}}</a>
+            <hr>
+            {%endfor%}
+        </div>
+        {%if search_term%}
+        {%for u in search_term%}
+        <h1 style="color:orange">{{u.username}}</h1>
+        {%endfor%}
+        {%endif%}
+
+{%endblock%}

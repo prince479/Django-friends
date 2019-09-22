@@ -1,0 +1,15 @@
+{%extends 'master.html'%}
+{%load static %}
+{% block body %}
+<center>
+    <h2>..USER REGISTRATION..</h2><br>
+
+    <form method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+
+    <button type="submit" name="register" class="btn btn-primary">Create Account</button>
+
+</form>
+</center>
+{%endblock%}
